@@ -41,7 +41,9 @@
 </script>
 <style>
   .tab-bar-item {
-    height: 49px;
+    font-size: 15px;
+    height: 38px;
+    line-height: 38px;
     flex: 1;
     text-align: center;
   }

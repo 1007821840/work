@@ -86,8 +86,8 @@ export default {
       .wrapper {
     position: absolute;
     width: 25%;
-    top: 138px;
-    bottom: 49px;
+    top: 176px;
+    bottom: 56px;
     left: 0;
     right: 0;
     overflow: hidden;
