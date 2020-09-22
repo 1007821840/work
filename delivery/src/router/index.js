@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 const Comment = () => import('../views/comment/Comment.vue')
 const Goods = () => import('../views/goods/Goods.vue')
 const Store = () => import('../views/store/Store.vue')
+const GoodsDetail =() =>import('../views/goods/childComps/GoodsDetail.vue')
 
 
 // 1.安装插件
@@ -14,6 +15,10 @@ const routes = [
   {
     path: '/comment',
     component: Comment
+  },
+  {
+    path: '/detail',
+    component: GoodsDetail
   },
   {
     path: '',

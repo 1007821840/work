@@ -24,7 +24,6 @@ export default {
   created(){
     getSYMultidata().then(res => {
      this.mult=res.seller;
-     console.log(res.seller);
     })
 },
   components: {

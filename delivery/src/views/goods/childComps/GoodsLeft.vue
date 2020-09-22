@@ -1,89 +1,85 @@
 <template>
   <div>
     <scroll ref="scroll" @scroll="contentScroll" :probe-type="3" :pull-up-load="true" @pullingUp="loadMore">
-        <div>
-            <ul>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-            </ul>
+      <div class="goods">
+        <div v-for="(item,index) in goods" class="goodsleft" :class="{active:index==$store.state.ix}" @click="isActive(index)" >
+          <span>
+            {{item.name}}
+          </span>
         </div>
-        </scroll>
+      </div>
+    </scroll>
   </div>
 </template>
-
 <script>
-    import Scroll from '@/components/common/scroll/Scroll'
-export default {
-  name:"GoodsLeft",
-  data () {
-    return {
+  import { mapMutations } from 'vuex'
+  import Scroll from '@/components/common/scroll/Scroll'
+  export default {
+    name: "GoodsLeft",
+    props: {
+      goods: Array,
+      default() {
+        return []
+      }
+
+    },
+    data() {
+      return {
+        currentIndex:0
+
+      };
+    },
+    created(){
       
-    };
-  },
-  components: {
-    Scroll
-  },
-  mounted () {},
-  methods: {
-    contentScroll(position) {
+
     },
-    
-    loadMore() {
-      this.$refs.scroll.scroll.refresh()
+    components: {
+      Scroll
     },
+    mounted() { },
+    methods: {
+      ...mapMutations(['list']),
+      
+      isActive(index) {
+        // console.log(this.currentIndex);
+
+        this.$store.state.scrol.scrollTo(0,-this.$store.state.list[index],100);
+        this.currentIndex = index;
+        this.$store.commit('index',this.currentIndex);
+        console.log(this.currentIndex);
+
+      },
+      contentScroll(position) {
+        console.log( this.currentIndex);
+      },
+
+      loadMore() {
+        this.$refs.scroll.scroll.refresh()
+      },
+     
+    }
   }
-}
 </script>
 <style scoped>
-      .wrapper {
+  .goodsleft {
+    width: 75%;
+    height: 54px;
+    margin: auto;
+
+    text-align: center;
+    border-bottom: 1px solid #cccc;
+  }
+
+  .goodsleft span {
+    position: relative;
+    top: 15px;
+
+
+
+  }
+
+  .wrapper {
+    background-color: #F3F5F7;
     position: absolute;
     width: 25%;
     top: 176px;
@@ -91,6 +87,9 @@ export default {
     left: 0;
     right: 0;
     overflow: hidden;
-    background-color: red;
+
+  }
+  .active {
+    color: red
   }
 </style>
