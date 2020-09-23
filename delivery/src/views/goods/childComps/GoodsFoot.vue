@@ -1,25 +1,42 @@
 <template>
   <div id="goodsfoot">
     <div class="left">
-      <div class="ico"><i class="iconfont">&#xe70b;</i></div>
+      <div class="ico" @click="ico"><i class="iconfont">&#xe70b;</i></div>
       <div class="yuan">￥0元</div>
     </div>
     <div class="center">另需配送费￥4元</div>
     <div class="right">￥20元起送</div>
+    <transition name="plus-icon">
+    <goods-foots class="goods-foots" ref="goods-foots" v-if="show" :wtl="wtl"/>
+    </transition>
   </div>
 </template>
 
 <script>
+  import GoodsFoots from './GoodsFoots'
 export default {
   name:"GoodsFoot",
   data () {
     return {
-      
+      show:false
     };
   },
-  components: {},
+  components: {
+    GoodsFoots
+  },
+  computed:{
+      wtl(){
+          return this.$store.state.cartList
+      }
+  },
   mounted () {},
-  methods: {}
+  methods: {
+    ico(){
+     this.show=!this.show;
+     console.log('1');
+      
+    }
+  }
 }
 </script>
 <style scoped>
@@ -37,6 +54,16 @@ export default {
         left: 0;
         right: 0;
         bottom: 0;
+    }
+    .goods-foots{
+      position: absolute;
+      top: -250px;
+      bottom: 0px;
+      left: 0;
+      width: 100%;
+      height: 250px;
+      background-color: #ffffff;
+
     }
     .iconfont{
       font-size: 50px;
@@ -68,6 +95,7 @@ export default {
       width: 105px;
     }
     .ico{
+      z-index: 999;
       width: 56px;
       height: 56px;
       background: #2b343c;
@@ -76,5 +104,17 @@ export default {
       top: -12px;
       left: 15px;
     }
+    .plus-icon-enter-active{
+    transition: opacity .5s;
+  }
+  .plus-icon-enter{
+     opacity: 0;
+  }
+  .plus-icon-leave-active{
+    transition: opacity .5s;
+  }
+  .plus-icon-leave-to{
+    opacity: 0;
+  }
 
 </style>

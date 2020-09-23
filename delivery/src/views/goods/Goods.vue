@@ -16,17 +16,23 @@ export default {
   name:"Goods",
   data () {
     return {
-      good:[]
+      good:[],
+      list:[]
       
     };
   },
   created(){
     getSYMultidata().then(res => {
-    
       this.good=res.goods;
+      for(let i=0;i<this.good.length;i++){
+        this.list.push(this.good[i].foods);
+      }
+     
       this.$store.commit('goodsValue',this.good)
-    
     })
+},
+updated(){
+
 },
   components: {
     GoodsRight,

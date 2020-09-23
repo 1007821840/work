@@ -36,6 +36,7 @@
     components: {
       Scroll
     },
+   
     mounted() { },
     methods: {
       ...mapMutations(['list']),
@@ -46,11 +47,11 @@
         this.$store.state.scrol.scrollTo(0,-this.$store.state.list[index],100);
         this.currentIndex = index;
         this.$store.commit('index',this.currentIndex);
-        console.log(this.currentIndex);
+        // console.log(this.currentIndex);
 
       },
       contentScroll(position) {
-        console.log( this.currentIndex);
+        // console.log( this.currentIndex);
       },
 
       loadMore() {

@@ -15,13 +15,13 @@
                 <div class="rights-5">￥{{item.price}}</div>
             </div>
             <div class="add" @click="rights(i)">+</div>
-            <div>{{$store.state.count}}</div>
+            <!-- <div v-for="item in $store.state.cartList">
+                <div>{{item.count}}</div>
+            </div> -->
             </div>
-           
         </div>
     </div>
 </template>
-
 <script>
     import GoodsDetail from './GoodsDetail.vue'
     import {mapMutations} from 'vuex'
@@ -36,19 +36,30 @@
         },
         data() {
             return {
+                list:[]
               
 
             };
+        },
+        created(){
+            for(let j=0;j<this.item.foods.length;j++){
+                this.list.push(this.item.foods[j])
+            }
+        },
+        updated(){
+           
         },
         components: {
             GoodsDetail
         },
         mounted() { 
-         
+            // for(let i=0;i<this.item.foods.length;i++){
+            //     this.list.push(this.item.foods[i])
+            // }
         },
         methods: {
          
-            ...mapMutations(['add','setValue']),
+            ...mapMutations(['setValue']),
             show(i){
                 // console.log(i);
                 this.$store.commit('setValue',i)
@@ -56,9 +67,15 @@
 
             },
             rights(i){
-                this.add()
-                console.log(i);
-            }
+               
+                this.$store.commit('addCart',this.list[i])
+
+            },
+            // addCart(){
+            //     const product={}
+            //     product.name=this.list
+
+            // }
         }
     }
 </script>
