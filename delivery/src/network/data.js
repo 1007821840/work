@@ -1,6 +1,6 @@
-import {request} from './request'
-export function getSYMultidata(){
+import { request } from './request'
+export function getSYMultidata() {
     return request({
-        url:'/api/data.json'
+        url: '/api/data.json'
     })
 }

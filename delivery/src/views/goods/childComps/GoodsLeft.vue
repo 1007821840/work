@@ -2,7 +2,7 @@
   <div>
     <scroll ref="scroll" @scroll="contentScroll" :probe-type="3" :pull-up-load="true" @pullingUp="loadMore">
       <div class="goods">
-        <div v-for="(item,index) in goods" class="goodsleft" :class="{active:index==$store.state.ix}" @click="isActive(index)" >
+        <div v-for="(item,index) in goods" class="goodsleft" :key="index" :class="{active:index==$store.state.ix}" @click="isActive(index)" >
           <span>
             {{item.name}}
           </span>
@@ -66,6 +66,8 @@
     width: 75%;
     height: 54px;
     margin: auto;
+    font-size: 3.5vw;
+    color: #000;
 
     text-align: center;
     border-bottom: 1px solid #cccc;

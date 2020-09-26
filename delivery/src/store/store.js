@@ -15,7 +15,8 @@ export default new vuex.Store({
         ix: 0,
         cartList: [],
         cartLists: [],
-        payload:[]
+        payload: [],
+        count: []
     },
     mutations: {
         setValue(state, i) {
@@ -39,10 +40,10 @@ export default new vuex.Store({
         ixmore(state, ix) {
             state.ix = ix;
         },
-        add(state){
-            
-            
-            
+        add(state) {
+
+
+
 
         },
         addCart(state, payload) {
@@ -60,8 +61,21 @@ export default new vuex.Store({
                 payload.count = 1;
                 state.cartList.push(payload)
             }
-            state.cartLists = state.cartList;
-        }
+
+        },
+        addCurrentCounts(state, payload) {
+            payload.oldProduct.currentCounts += payload.payload.currentCounts;
+        },
+        updateCounts(state, payload) {
+            //1、查找到当前要修改的商品
+            let oldProduct = state.shoppingCartGoods.find(item => {
+                    return item.iid === payload.item.iid && item.productStyleMsg === payload.item.productStyleMsg && item.productSizeMsg === payload.item.productSizeMsg
+                })
+                //2、改变checked值
+            oldProduct.currentCounts += payload.number;
+        },
+
+
     },
     actions: {
         // addN(context, step) {
@@ -71,4 +85,3 @@ export default new vuex.Store({
         // }
     }
 })
-
