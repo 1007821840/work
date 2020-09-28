@@ -7,7 +7,7 @@
       :pull-up-load="true"
       @pullingUp="loadMore"
     >
-      <div v-for="(item, i) in wtl" class="foots" :key="i">
+      <div v-for="(item, i) in cartList" class="foots" :key="i">
         <div class="img">
           <img :src="item.image" />
         </div>
@@ -16,7 +16,8 @@
           <div class="sub" @click="sub(i)">-</div>
           <!-- <div class="count" ref="val" value="item.count">
                     </div> -->
-          <input :value="item.count" class="count" :ref="`list${i}`" />
+          <!-- <input :value="item.count" class="count" :ref="`list${i}`" /> -->
+          <div>{{item.count}}</div>
           <div class="add" @click="add(i)">+</div>
         </div>
       </div>
@@ -35,7 +36,7 @@ export default {
     };
   },
   props: {
-    wtl: Array,
+    cartList: Array,
     default() {
       return [];
     },
@@ -53,10 +54,9 @@ export default {
     },
     add(i) {
       let total = 0;
-      this.wtl.forEach((count) => {
+      this.cartList.forEach((count) => {
         total = count.count;
       });
-      this.updateCounts({ item: this.product, number: 1 });
       this.$refs[`list${i}`][0].value++;
       this.$store.commit("add");
     },

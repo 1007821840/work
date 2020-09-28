@@ -16,7 +16,8 @@ export default new vuex.Store({
         cartList: [],
         cartLists: [],
         payload: [],
-        count: []
+        count: [],
+        newCartList: []
     },
     mutations: {
         setValue(state, i) {
@@ -47,21 +48,40 @@ export default new vuex.Store({
 
         },
         addCart(state, payload) {
-            let oldProduct = null;
-            for (let item of state.cartList) {
-                if (item.name == payload.name) {
-                    oldProduct = item;
-                }
-            }
-            // this.oldProduct = state.cartList.find(item=>item.name === payload.name) 
+            // let oldProduct = null;
+            // for (let item of state.cartList) {
+            //     if (item.name == payload.name) {
+            //         oldProduct = item;
+            //     }
+            // }
+            let oldProduct = state.cartList.find(item => item.name === payload.name)
 
             if (oldProduct) {
-                oldProduct.count += 1;
+                oldProduct.count += 1
+                Vue.set(oldProduct, 'counts', oldProduct.count)
             } else {
                 payload.count = 1;
+                Vue.set(payload, 'counts', payload.count)
                 state.cartList.push(payload)
             }
+            var newArr = state.newCartList
+            state.newCartList = null
+            state.newCartList = newArr
+                // for (let i = 0; i < state.cartList.length; i++) {
+                //     if (state.cartList.length > 1) {
+                //         if (state.cartList[i].name == state.cartList[i + 1].name) {
+                //             state.cartList[i].count++
+                //                 state.newCartList.push(state.cartList[i])
+                //         } else {
+                //             state.cartList[i].count = 1
+                //             state.cartList[i + 1].count = 1
+                //             state.newCartList.push(state.cartList[i], state.cartList[i + 1])
+                //         }
+                //     }
 
+            // }
+
+            console.log(state.cartList);
         },
         addCurrentCounts(state, payload) {
             payload.oldProduct.currentCounts += payload.payload.currentCounts;
@@ -69,10 +89,10 @@ export default new vuex.Store({
         updateCounts(state, payload) {
             //1、查找到当前要修改的商品
             let oldProduct = state.shoppingCartGoods.find(item => {
-                    return item.iid === payload.item.iid && item.productStyleMsg === payload.item.productStyleMsg && item.productSizeMsg === payload.item.productSizeMsg
+                    return item.name === payload.item.name
                 })
                 //2、改变checked值
-            oldProduct.currentCounts += payload.number;
+            oldProduct.count += payload.number;
         },
 
 

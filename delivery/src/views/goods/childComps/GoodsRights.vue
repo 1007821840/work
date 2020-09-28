@@ -1,6 +1,6 @@
 <template>
     <div class="goodsrights">
-        <div v-for="(item,i) in item.foods" class="rights">
+        <div v-for="(item,i) in item.foods" class="rights" :key="i">
             <div class="rightss">
             <div class="rights-1"  @click="show(i)">
                 <img :src="item.image">

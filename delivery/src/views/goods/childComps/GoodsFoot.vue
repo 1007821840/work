@@ -2,9 +2,10 @@
   <div id="goodsfoot">
     <div class="left">
       <div class="ico" @click="ico">
+        <div class="count" :class="{ show: color }">{{ totalCount }}</div>
         <i class="iconfont" :class="{ active: color }">&#xe70b;</i>
       </div>
-      <div class="yuan">￥{{ totalPrice }}元</div>
+      <div class="yuan" :class="{ pink: color }">￥{{ totalPrice }}元</div>
     </div>
     <div class="center">另需配送费￥4元</div>
     <div class="right">￥20元起送</div>
@@ -12,8 +13,8 @@
       <goods-foots
         class="goods-foots"
         ref="goods-foots"
-        v-if="show"
-        :wtl="wtl"
+        :cartList="cartList"
+         v-if="show"
       />
     </transition>
   </div>
@@ -27,36 +28,42 @@ export default {
   data() {
     return {
       show: false,
-    
     };
   },
   components: {
     GoodsFoots,
   },
+
   computed: {
-    wtl() {
-      return this.$store.state.cartList;
-    },
     ...mapState(["cartList"]),
+    // ...mapState(["newCartList"]),
     totalPrice() {
       return this.cartList.reduce((preValue, item) => {
-        return item.price * item.count + preValue;
+       
+          return item.price * item.counts + preValue;
+     
       }, 0);
     },
-    color(){
-      if(this.totalPrice){
-        return true
-      }else {
-        return false
+    totalCount() {
+      let count = 0;
+      for (let i = 0; i < this.cartList.length; i++) {
+       
+        count += this.cartList[i].counts;
       }
-    }
-    
+      return count;
+    },
+    color() {
+      if (this.totalPrice) {
+        return true;
+      } else {
+        return false;
+      }
+    },
   },
   mounted() {},
   methods: {
     ico() {
       this.show = !this.show;
-      console.log("1");
     },
   },
 };
@@ -137,6 +144,25 @@ export default {
   opacity: 0;
 }
 .active {
- color: aqua;
+  color: aqua;
+}
+.pink {
+  color: #ff627b;
+}
+.count {
+  position: absolute;
+  top: -2vw;
+  right: 4.8vw;
+  width: 5vw;
+  height: 5vw;
+  z-index: 99;
+  color: #fff;
+  background-color: #ff627b;
+  line-height: 5vw;
+  border-radius: 50%;
+  display: none;
+}
+.show {
+  display: block;
 }
 </style>
