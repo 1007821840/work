@@ -66,7 +66,7 @@
     width: 75%;
     height: 54px;
     margin: auto;
-    font-size: 3.5vw;
+    font-size: 14px;
     color: #000;
 
     text-align: center;

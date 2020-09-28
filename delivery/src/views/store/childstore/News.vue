@@ -53,7 +53,7 @@ export default {
   padding-left: 2vw;
   margin: 2vw 0 4vw;
   line-height: 24px;
-  font-size: 3.5vw;
+  font-size: 14px;
   color: #f01414;
 }
 

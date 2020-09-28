@@ -41,11 +41,11 @@ export default new vuex.Store({
         ixmore(state, ix) {
             state.ix = ix;
         },
-        add(state) {
-
-
-
-
+        add(state, product) {
+            product.count++
+        },
+        sub(state, product) {
+            product.count--
         },
         addCart(state, payload) {
             // let oldProduct = null;
