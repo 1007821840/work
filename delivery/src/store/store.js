@@ -48,14 +48,20 @@ export default new vuex.Store({
             product.count--
         },
         addCart(state, payload) {
-            // let oldProduct = null;
-            // for (let item of state.cartList) {
-            //     if (item.name == payload.name) {
-            //         oldProduct = item;
-            //     }
-            // }
+            // return new Promise((resolve, reject) => {
+            //         let oldProduct = state.cartList.find(item => item.name === payload.name)
+            //         if (oldProduct) {
+            //             oldProduct.count += 1
+            //             Vue.set(oldProduct, 'counts', oldProduct.count)
+            //             resolve('商品数量加1')
+            //         } else {
+            //             payload.count = 1;
+            //             Vue.set(payload, 'counts', payload.count)
+            //             state.cartList.push(payload)
+            //             resolve('商品已加入购物车')
+            //         }
+            //     })
             let oldProduct = state.cartList.find(item => item.name === payload.name)
-
             if (oldProduct) {
                 oldProduct.count += 1
                 Vue.set(oldProduct, 'counts', oldProduct.count)
@@ -64,24 +70,7 @@ export default new vuex.Store({
                 Vue.set(payload, 'counts', payload.count)
                 state.cartList.push(payload)
             }
-            var newArr = state.newCartList
-            state.newCartList = null
-            state.newCartList = newArr
-                // for (let i = 0; i < state.cartList.length; i++) {
-                //     if (state.cartList.length > 1) {
-                //         if (state.cartList[i].name == state.cartList[i + 1].name) {
-                //             state.cartList[i].count++
-                //                 state.newCartList.push(state.cartList[i])
-                //         } else {
-                //             state.cartList[i].count = 1
-                //             state.cartList[i + 1].count = 1
-                //             state.newCartList.push(state.cartList[i], state.cartList[i + 1])
-                //         }
-                //     }
 
-            // }
-
-            console.log(state.cartList);
         },
         addCurrentCounts(state, payload) {
             payload.oldProduct.currentCounts += payload.payload.currentCounts;

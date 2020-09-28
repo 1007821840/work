@@ -5,7 +5,7 @@
         {{item.count}}
       </div> -->
       <div ref="foods">
-        <div v-for="(item,i) in goods" @click="rightss(i)" class="foods-list">
+        <div v-for="(item,i) in goods" @click="rightss(i)" class="foods-list" :key="i">
           <div class="goods">{{item.name}}</div>
           <goods-rights :item="item" />
         </div>

@@ -68,6 +68,7 @@
             },
             rights(i){
                 this.$store.commit('addCart',this.list[i])
+                     
             },
             // addCart(){
             //     const product={}

@@ -17,7 +17,7 @@
           <!-- <div class="count" ref="val" value="item.count">
                     </div> -->
           <!-- <input :value="item.count" class="count" :ref="`list${i}`" /> -->
-          <div>{{item.count}}</div>
+          <div>{{ item.count }}</div>
           <div class="add" @click="add(i)">+</div>
         </div>
       </div>
@@ -27,7 +27,7 @@
 
 <script>
 import Scroll from "@/components/common/scroll/Scroll";
-import {mapMutations} from "vuex"
+import { mapMutations } from "vuex";
 export default {
   name: "GoodsFoots",
   data() {
@@ -47,7 +47,7 @@ export default {
   mounted() {},
   computed: {},
   methods: {
-      ...mapMutations(["updateCounts"]),
+    ...mapMutations(["updateCounts"]),
     contentScroll(position) {},
     loadMore() {
       this.$refs.scroll.scroll.refresh();
@@ -109,12 +109,12 @@ export default {
 
 .sub,
 .add {
-  width: 6vw;
-  height: 6vw;
+  width: 20px;
+  height: 20px;
   background-color: aqua;
 
   text-align: center;
-  line-height: 6vw;
+  line-height: 20px;
   border-radius: 50px;
   margin: 4vw 2vw;
 }

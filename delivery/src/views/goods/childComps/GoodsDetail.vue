@@ -32,7 +32,6 @@
       <div class="detail-foot">
         <span class="span1">只看有评论的内容</span>
       </div>
-      <goods-details />
       <div
         v-for="(it, index) in goodnew[first].foods[item].ratings"
         :key="index"
