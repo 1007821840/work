@@ -7,7 +7,9 @@
       :pull-up-load="true"
       @pullingUp="loadMore"
     >
-      <div @click="back" class="detail-back">o</div>
+      <div @click="back" class="detail-back">
+        <img src="@/assets/img/back.svg" alt="">
+      </div>
       <div class="detail-img">
         <img :src="goodnew[first].foods[item].image" />
       </div>
@@ -34,17 +36,18 @@
       </div>
       <div
         v-for="(it, index) in goodnew[first].foods[item].ratings"
-        :key="index"
+        :key="index" class="item"
       >
         <div class="left-it">
-          <div>{{ it.rateTime | formatDate }}</div>
-          <div>{{ it.text }}</div>
-        </div>
-        <div class="right-it">
           <div>
             <img :src="it.avatar" />
           </div>
           <div>{{ it.username }}</div>
+          
+        </div>
+        <div class="right-it">
+          <div class="text">{{ it.text }}</div>
+          <div class="times">{{ it.rateTime | formatDate }}</div>
         </div>
       </div>
     </scroll>
@@ -191,10 +194,19 @@ h2 {
 .detail-back {
   z-index: 99;
   position: fixed;
-  top: 10px;
+  top: 0px;
   width: 50px;
   height: 50px;
-  background-color: royalblue;
+  line-height: 50px;
+  /* background-color: royalblue; */
+  background-color: rgba(250, 250, 250, 0.5);
+}
+.detail-back img {
+  width: 25px;
+  height: 25px;
+  margin-top: 13px;
+  margin-left: 9px;
+ 
 }
 .right-it {
   display: inline-block;
@@ -218,5 +230,24 @@ h2 {
   z-index: 1;
   width: 100vw;
   height: 100vh;
+}
+.left-it  {
+  display: flex;
+  margin: 4vw;
+}
+.left-it img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+.right-it {
+  margin-left: 4vw;
+}
+.right-it .times {
+  margin: 4vw 0;
+
+}
+.item {
+  border-bottom: 1px solid #cccccc;
 }
 </style>
